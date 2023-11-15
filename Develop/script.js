@@ -32,6 +32,12 @@ function generatePassword() {
   if (includeSpecial) passwordChar += specialChar;
   if (includeNumber) passwordChar += numberChar;  
 
+  var randomPassword = "";
+  for (i = 0; i < passwordLength; i++) {
+    randomPassword += passwordChar.charAt(Math.floor(Math.random() * passwordChar.length));
+  };
+
+  return randomPassword;
 
 };
 
