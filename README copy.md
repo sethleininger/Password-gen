@@ -1,128 +1,100 @@
-# Git Branch
+# 03 JavaScript: Password Generator
 
-Every developer has done it&mdash;you make a mistake but fail to notice it until you've already written a lot of great code in the meantime. If you want to revert your changes to fix the error, you risk losing all that work!
+## Your Task
 
-Luckily, a powerful tool called **Git branching** helps prevent scenarios like this and makes it easier to fix problems when they do arise. Branching allows team members to work on separate features at the same time while minimizing conflicts. For instance, you can easily switch to a colleague's branch to help them with their code or ask colleagues to review your own code before merging it with the main codebase.
+This week's Challenge requires you to modify starter code to create an application that enables employees to generate random passwords based on criteria that they’ve selected. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean and polished, responsive user interface that adapts to multiple screen sizes.
 
-You'll likely use branching every day in your development career. Whenever you need to fix a bug or build a new feature, you'll create a new branch&mdash;an isolated environment where you can write and test code without messing up the main codebase. This way, you always have the option to return to an earlier version without losing everything. Once the work is complete, you can merge the branch with the main codebase and move on!
+The password can include special characters. If you’re unfamiliar with these, see this [list of password special characters](https://www.owasp.org/index.php/Password_special_characters) from the OWASP Foundation.
 
-In this activity, we'll learn the concept of branching by using Git commands to create a new branch, complete a feature in the new branch, merge the branch with `main`, and close the branch when finished.
+## User Story
 
-## Instructions
-
-* Navigate to a directory where you usually store your coding files using your command line.
-
-* Create a new directory called `git_branch_demo`. We could create a new repo in Github as well, but because we're working locally for this activity, we can skip that step and instead issue the following command:
-
-  ```bash
-  mkdir git_branch_demo
-  ```
-
-* Now use the `cd` command to navigate into the newly created directory. Initialize an empty Git repo in the directory with the following command:
-
-  ```bash
-  cd git_branch_demo
-  git init .
-  ```
-
-* Open the `git_branch_demo` directory in VS Code.
-
-* Now that we're ready to create the first feature, we need to create a new branch. Remember, the goal is to avoid working in the `main` branch, so that we can make mistakes on the new feature without damaging code that already works.
-
-* Now before we can create a new branch, we first need to actually commit something to our newly initiated `main` branch. Let's go ahead and create a top-level README. Top-level here means its at the root of the directory.
-
-```bash
-touch README.md
-git add -A
-git commit -m "creating a top level readme"
+```
+AS AN employee with access to sensitive data
+I WANT to randomly generate a password that meets certain criteria
+SO THAT I can create a strong password that provides greater security
 ```
 
-* The Git command for creating a new named branch in your repo is `git checkout -b feature/<feature-name>`. Pick a name that is associated with the feature that you will be working on. `feature/` reminds us that each branch is dedicated to a specific feature, while `<feature-name>` is the name of the feature. In this case, we'll be creating a JS file, so let's call it `create-js-file`, as follows:
+## Acceptance Criteria
 
-  ```bash
-  git checkout -b feature/create-js-file
-  ```
+```
+GIVEN I need a new, secure password
+WHEN I click the button to generate a password
+THEN I am presented with a series of prompts for password criteria
+WHEN prompted for password criteria
+THEN I select which criteria to include in the password
+WHEN prompted for the length of the password
+THEN I choose a length of at least 8 characters and no more than 128 characters
+WHEN asked for character types to include in the password
+THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
+WHEN I answer each prompt
+THEN my input should be validated and at least one character type should be selected
+WHEN all prompts are answered
+THEN a password is generated that matches the selected criteria
+WHEN the password is generated
+THEN the password is either displayed in an alert or written to the page
+```
 
-* This command will create the new branch, and then `checkout` to it. So you should now be on the `feature/create-js-file` branch.
+## Mock-Up
 
-* The Git command `git branch` allows us to see a list of existing branches. Run the following command so that we can confirm that the `feature/create-js-file` branch was created:
+The following image shows the web application's appearance and functionality:
 
-  ```bash
-  git branch
-  ```
+![The Password Generator application displays a red button to "Generate Password".](./Assets/03-javascript-homework-demo.png)
 
-* You should see the `feature/create-js-file` branch and a `*` next to `main`, as shown in the following image:
+## Grading Requirements
 
-* We should now see a `*` by `feature/create-js-file`, letting us know this is the branch we are on, as shown in the following image:
+> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
+>
+> * A repository that has no code
+>
+> * A repository that includes a unique name but nothing else
+>
+> * A repository that includes only a README file but nothing else
+>
+> * A repository that only includes starter code
 
-  ![The command line shows a * next to the feature/create-js-file branch.](./Images/02-switch-branch.png)
+This Challenge is graded based on the following criteria: 
 
-  > **Important:** We also have the option to create a branch and switch over to it at the same time by entering `git checkout -b <branch-name>`.
+### Technical Acceptance Criteria: 40%
 
-* Now that we're on the correct feature branch, we need to work on the feature. Create an `index.js` file in the `git_branch_demo` directory, as shown in the following image:
+* Satisfies all of the preceding acceptance criteria.
 
-  ![In VS Code, the README.md file is listed in the file tree under the git_branch_demo directory.](./Images/03-index-js.png)
+### Deployment: 32%
 
-* Add some a few random variables to the `index.js` file, so that it looks something like the following image:
+* Application deployed at live URL.
 
-  ![We build the new feature by adding the text, "I made this in a new branch!!!!" to the README.md file.](./Images/04-new-variables.png)
+* Application loads with no errors.
 
-* Finally, add and commit the changes that you made, as follows:
+* Application GitHub URL submitted.
 
-  ```bash
-    git add -A
-    git commit -m "Created index.js and added text to the file"
-    ```
+* GitHub repository that contains application code.
 
-* Now that the feature is complete, you can merge the feature branch with `main`. First you need to switch back to `main` from `feature/create-js-file`. Remember, it's always a good idea to confirm that you're on the correct branch using the `git branch` command. See the following example:
+### Application Quality: 15%
 
-  ```bash
-  git checkout main
-  git branch
-  ```
+* Application user experience is intuitive and easy to navigate.
 
-  > **Important:** Git won't let you switch to a different branch until you have added, committed, and pushed any changes that you made to your feature branch. If you try to switch without pushing your code, Git will send you a reminder to push the changes that you made before switching branches.
+* Application user interface style is clean and polished.
 
-* Once we're in `main`, notice that we no longer have a index.js file in the directory. What happened? `main` is currently behind `feature/create-js-file` and we still need to merge the feature branch with the main codebase. To merge, add the following code to the command line:
+* Application resembles the mock-up functionality provided in the Challenge instructions.
 
-  ```bash
-  git merge feature/create-js-file
-  ```
+### Repository Quality: 13%
 
-* If the merge is successful, we should see something similar to the following image:
+* Repository has a unique name.
 
-  ![The command line shows lists the number of files changed and the number of insertions to indicate a successful merge.](./Images/05-merge.png)
+* Repository follows best practices for file structure and naming conventions.
 
-* Now the directory should include the `index.js` file that we created, along with whatever text we added to the file. We asked Git to merge the code that we wrote in the feature branch with the code that already existed in `main`. At this point, the new feature is a part of the main codebase, as you can see in the following image:
+* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
 
-  ![In the README.md file on the main branch, the text that we wrote on the feature branch now appears.](./Images/06-success-merge.png)
+* Repository contains multiple descriptive commit messages.
 
-* We're all done with the feature, and the code that we wrote safely exists in `main`. But if you enter the `git branch` command, you'll see that `feature/create-js-file` still exists, as shown in the following image:
+* Repository contains quality readme file with description, screenshot, and link to deployed application.
 
-  ![The feature/create-js-file branch is still listed.](./Images/07-still-exists.png)
+## Review
 
-* We could potentially generate a huge list of feature branches while working on a large project. So to avoid confusion and stay organized, it is good practice to close a branch once a feature is completed and merged. Because we're finished with this feature and the code is now included in `main`, we no longer need the isolated environment of that branch. We can always open another branch to fix future problems. But for now, we can safely close the feature branch by issuing the following command:
+You are required to submit the following for review:
 
-  ```bash
-  git branch -d feature/create-js-file
-  ```
+* The URL of the deployed application.
 
-* When we run `git branch`, we should see something similar to the following image:
+* The URL of the GitHub repository, with a unique name and a readme describing the project.
 
-  ![The command line only displays the main branch.](./Images/08-deleted-branch.png)
-
-* Congratulations, you've now completed your first branch lifecycle! You created an isolated environment on a new branch so that you could write and test code for a new feature, the `index.js` file. Once you finished adding text to `index.js`, you merged the feature branch with the main codebase on `main`. You then closed the feature branch, because you no longer needed to work on the `index.js` file.
-
-### Hints
-
-* You'll come up with your own naming conventions for branches when you're working on your own project. Try to be descriptive but concise to help other developers (or your future self) understand what is happening in each branch.
-
-* Popular naming conventions in the field include `feature/<feature-name>`, `issue/<issue-reference>`, etc. So it is a good idea to practice these conventions while you're learning.
-
-* Avoid including your own name in the branch name, because multiple developers might end up working in the same branch. So, for example, instead of `git branch rachels-feature`, try using `git branch user-login-page`.
-
-* More information can be found in these [Atlassian tutorials on branching](https://www.atlassian.com/git/tutorials/using-branches).
-
----
-
+- - -
 © 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
